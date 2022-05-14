@@ -3,6 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import Login from "./components/page/login/Login";
 import Home from "./components/page/homepage/Homepage";
+import Header from "./components/shared/header/Header";
+import Carousel from "./components/ui/carousel/Carousel";
+import Category from "./components/ui/category/Category";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -13,7 +16,7 @@ import {
   faMagnifyingGlass,
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
-import { Component } from "react";
+import { Component, useState, useEffect } from "react";
 
 library.add(
   fab,
@@ -64,11 +67,6 @@ library.add(
 //         <Header onHeaderSearch={headerSearchHandler} onLogout={logoutHandler}/>
 //         <Carousel />
 //         <Category />
-//         {searchTerm ? (
-//           <Demo searchTerm={searchTerm} searchResults={searchResults} />
-//         ) : (
-//           ""
-//         )}
 //       </>
 //     );
 //   } else {
@@ -96,26 +94,26 @@ library.add(
 // };
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       loggedIn: false,
     };
   }
 
-  loginHandler = () => {
+  loginHandler() {
     localStorage.setItem("isLoggedIn", "1");
     this.setState({
       loggedIn: true,
     });
-  };
+  }
 
-  logoutHandler = () => {
+  logoutHandler() {
     localStorage.setItem("isLoggedIn", "0");
     this.setState({
       loggedIn: false,
     });
-  };
+  }
 
   componentDidMount() {
     const storedUserLoggedIn = localStorage.getItem("isLoggedIn");
@@ -127,13 +125,11 @@ class App extends Component {
   render() {
     return (
       <>
-        {/* {this.state.loggedIn ? (
+        {this.state.loggedIn ? (
           <Home logoutHeaderBroastCast={this.logoutHandler.bind(this)} />
         ) : (
           <Login loggedInBroadcast={this.loginHandler.bind(this)} />
-        )} */}
-        <Login></Login>
-        <Home></Home>
+        )}
       </>
     );
   }

@@ -101,7 +101,7 @@ const Header = (props) => {
                     <a
                       className="dropdown-item"
                       href="#"
-                      onClick={props.onLogout}
+                      onClick={props.logoutBroastCast}
                     >
                       Đăng Xuất
                     </a>

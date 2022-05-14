@@ -3,7 +3,7 @@ import logo from "../../../assets/images/logo.png";
 import Footer from "../../shared/footer/Footer";
 import { Component } from "react";
 
-class Login extends Component() {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,9 +21,9 @@ class Login extends Component() {
   // const emailRef = useRef();
   // const passwordRef = useRef();
 
-  login = (event) => {
+  login(event) {
     event.preventDefault();
-    this.props.loggedInBroadCast(true);
+    this.props.loggedInBroadcast(true);
   };
 
   componentDidMount() {
@@ -53,13 +53,13 @@ class Login extends Component() {
   //   setIsPasswordValid(password.trim().length >= 6);
   // }, [email, password]);
 
-  emailHandler = (event) => {
+  emailHandler(event) {
     this.setState({
       email: event.target.value,
     });
   };
 
-  passwordHandler = (event) => {
+  passwordHandler(event) {
     this.setState({
       password: event.target.value,
     });
@@ -112,7 +112,7 @@ class Login extends Component() {
               <div className="form-input input-group has-validation">
                 <input
                   className={`form-control ${
-                    this.isEmailValid ? "is-valid" : "is-invalid"
+                    this.state.isEmailValid ? "is-valid" : "is-invalid"
                   }`}
                   type="text"
                   name="username"
@@ -120,14 +120,14 @@ class Login extends Component() {
                   // ref={emailRef}
                   onChange={this.emailHandler.bind(this)}
                 />
-                {!this.isEmailValid && (
+                {!this.state.isEmailValid && (
                   <div className="invalid-feedback">Email không hợp lệ</div>
                 )}
               </div>
               <div className="form-input input-group has-validation">
                 <input
                   className={`form-control ${
-                    this.isPasswordValid ? "is-valid" : "is-invalid"
+                    this.state.isPasswordValid ? "is-valid" : "is-invalid"
                   }`}
                   type="password"
                   name="password"
@@ -135,7 +135,7 @@ class Login extends Component() {
                   // ref={passwordRef}
                   onChange={this.passwordHandler.bind(this)}
                 />
-                {!this.isPasswordValid && (
+                {!this.state.isPasswordValid && (
                   <div className="invalid-feedback">
                     Mật khẩu phải chứa hơn 6 ký tự.
                   </div>

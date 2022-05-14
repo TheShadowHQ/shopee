@@ -105,7 +105,9 @@ const Carousel = () => {
             <span className="visually-hidden">Next</span>
           </button>
         </div>
-        <div className={`${styles.carouselAside} ms-2 d-flex flex-column justify-content-between`}>
+        <div
+          className={`${styles.carouselAside} ms-2 d-flex flex-column justify-content-between`}
+        >
           <img
             src="images/slide-aside-1.png"
             alt=""
@@ -126,7 +128,11 @@ const Carousel = () => {
               className={`${styles.carouselCategoryItem} d-flex flex-column align-items-center`}
               key={item.key}
             >
-              <img src={item.image} alt="" className={`d-block ${styles.carouselCategoryItemImg}`} />
+              <img
+                src={item.image}
+                alt=""
+                className={`d-block ${styles.carouselCategoryItemImg}`}
+              />
               <p className={`text-center mt-2 ${styles.carouselCategoryItemP}`}>
                 {item.text}
               </p>
