@@ -1,0 +1,24 @@
+/*footer*/
+footer {
+    padding-top: 20px;
+}
+
+footer .heading {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer ul li {
+    padding-bottom: 8px;
+    font-size: 12px;
+}
+
+footer ul li:hover {
+    color: #EE4D2D;
+    cursor: pointer;
+}

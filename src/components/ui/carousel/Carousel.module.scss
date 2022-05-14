@@ -1,0 +1,28 @@
+/*carousel*/
+.carouselSection {
+    margin-top: 180px;
+}
+
+.carousel {
+    width: 800px;
+}
+
+.carouselAside {
+    flex: 1;
+}
+
+.carouselCategoryItem {
+    width: 100px;
+}
+
+.carouselCategoryItemImg {
+    width: 45px;
+    height: 45px;
+}
+
+.carouselCategoryItemP {
+    letter-spacing: 0;
+    word-wrap: break-word;
+    line-height: .875rem;
+    font-size: .8125rem;
+}

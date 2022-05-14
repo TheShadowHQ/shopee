@@ -1,0 +1,35 @@
+
+.flash-sale-heading {
+  width: 120px;
+}
+
+.flash-sale-item-wrapper {
+  width: 150px;
+}
+
+.flash-sale-number {
+  height: 50px;
+  width: 44px;
+  background-color: rgba(255, 212, 36, .9);
+  z-index: 9;
+}
+
+.flash-sale-number:after {
+  content: "";
+  width: 0;
+  height: 0;
+  left: 0;
+  bottom: -4px;
+  position: absolute;
+  border-color: transparent rgba(255, 212, 36, .9);
+  border-style: solid;
+  border-width: 0 22px 4px;
+}
+
+.progress {
+  background: #FCBDA6;
+}
+
+.progress-bar {
+  background: #EB1B17;
+}
