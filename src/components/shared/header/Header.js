@@ -1,7 +1,9 @@
 import "./Header.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../navbar/Navbar";
+import avatar from "../../../assets/images/avatar.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
   const user = {
@@ -16,7 +18,7 @@ const Header = (props) => {
   return (
     <header className="bg-primary">
       <div className="wrapper">
-        <nav className="navbar navbar-expand w-100">
+        <nav className="navbar navbar-expand w-100" style={{height: "2rem"}}>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 left-nav">
             <li className="nav-item">
               <a className="nav-link slash" href="#">
@@ -70,11 +72,7 @@ const Header = (props) => {
             </li>
             <li className="nav-item">
               <div>
-                <img
-                  src="images/avatar.jpg"
-                  alt="avatar"
-                  className="avatar circle"
-                />
+                <img src={avatar} alt="avatar" className="avatar circle" />
               </div>
               <div className="dropdown">
                 <a
@@ -88,9 +86,9 @@ const Header = (props) => {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to="/account/profile">
                       Tài Khoản Của Tôi
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a className="dropdown-item" href="#">

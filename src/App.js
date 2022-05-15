@@ -6,6 +6,7 @@ import Home from "./components/page/homepage/Homepage";
 import Header from "./components/shared/header/Header";
 import Carousel from "./components/ui/carousel/Carousel";
 import Category from "./components/ui/category/Category";
+import Profile from "./components/page/account/profile/Profile";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";

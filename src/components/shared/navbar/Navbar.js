@@ -1,7 +1,9 @@
 import styles from "./Navbar.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Search from "./search/Search";
+import shopeeLogo from "../../../assets/images/logo-full-white.png"
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
   let [cartNumber, setCartNumber] = useState(props.shoppingCartNumber);
@@ -27,9 +29,9 @@ const Navbar = (props) => {
   return (
     <nav className="wrapper navbar navbar-expand-lg navbar-light">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          <img src="images/logo-full-white.png" alt="" width="162px" />
-        </a>
+        <Link className="navbar-brand" to="/">
+          <img src={shopeeLogo} alt="" width="162px" />
+        </Link>
         <Search onSearch={searchHandler}>
           <div className="text-small mt-2">
             {favoriteItems.map((item) => (

@@ -14,7 +14,7 @@ const Home = (props) => {
 
     return (
         <>
-            <Header logoutBroastCast={logoutHandler}/>
+            <Header logoutBroastCast={logoutHandler} />
             <Carousel/>
             <main className="bg-gray py-4">
                 <Category />

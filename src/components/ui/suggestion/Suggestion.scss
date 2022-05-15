@@ -1,8 +1,8 @@
 .tabs {
   position: sticky;
-  top: 152px;
+  top: 116px;
   z-index: 99;
-  border-bottom: 1px solid #F5F5F5;
+  border-bottom: 1px solid #f5f5f5;
 }
 
 .hint-wrapper {
@@ -10,30 +10,35 @@
 }
 
 .today-hint .tab.active {
-  border-bottom: 3px solid #F95030;
+  border-bottom: 3px solid #f95030;
 }
 .hint-image-wrapper {
   width: 200px;
 }
+
 .today-hint-item-wrapper {
   width: 190px;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.14);
   position: relative;
   z-index: 1;
 }
+
 .today-hint-item-wrapper:hover {
   transform: translatey(-2px);
   border: 1px solid #ee4d2d;
 }
+
 .similar {
   display: none;
   position: absolute;
   width: 100%;
   z-index: 10;
 }
+
 .today-hint-item-wrapper:hover .similar {
   display: block;
 }
+
 .item-description {
   font-size: 0.75rem;
   word-wrap: break-word;
@@ -44,6 +49,7 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
+
 .view-more {
   width: 25%;
   margin: 24px auto;
@@ -52,6 +58,7 @@
   border: 1px solid #ccc;
   text-align: center;
 }
+
 .load-more-item {
   display: none;
 }
