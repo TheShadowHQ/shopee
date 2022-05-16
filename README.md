@@ -1,8 +1,12 @@
 # Cloned Shopee Project 
-## This project is cloned based of [https://shopee.vn] website for learning purposes.
 
-Instructor: Nguyen Huu Luan
-Author: Quoc Nguyen
+## Instructor: Nguyen Huu Luan
+## Author: Quoc Nguyen
+## Purpose 
+This project is cloned based of [https://shopee.vn] website for learning purposes.
+
+## Technology Used
+HTML, SCSS, Javascript, React, Bootstrap
 
 ## Available Scripts
 
