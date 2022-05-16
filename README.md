@@ -1,7 +1,10 @@
 # Cloned Shopee Project 
 
-## Instructor: Nguyen Huu Luan
-## Author: Quoc Nguyen
+
+## Instructor
+Nguyen Huu Luan
+## Author
+Quoc Nguyen
 ## Purpose 
 This project is cloned based of [https://shopee.vn] website for learning purposes.
 
