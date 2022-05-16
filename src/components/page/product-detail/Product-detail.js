@@ -15,11 +15,17 @@ const ProductDetail = () => {
   const selectedProduct = productItems.find((item) => item.id === productId);
 
   const [quantity, setQuantity] = useState(1);
+  const [activeColor, setActiveColor] = useState("");
 
   const setOrderQuantity = (event) => {
     event.preventDefault();
     setQuantity(+event.target.value);
   };
+
+  const selectColor = (event) => {
+    event.preventDefault();
+    setActiveColor(event.target.textContent);
+  }
 
   return (
     <>
@@ -102,7 +108,8 @@ const ProductDetail = () => {
                     {selectedProduct.colors.map((color, index) => (
                       <button
                         key={index}
-                        className="btn btn-outline-secondary color-btn text-dark me-3"
+                        className={`btn btn-outline-secondary color-btn text-dark me-3 ${activeColor === color ? "selected-color" : ""}` }
+                        onClick={selectColor}
                       >
                         {color}
                       </button>
