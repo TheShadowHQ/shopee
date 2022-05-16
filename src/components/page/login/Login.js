@@ -43,7 +43,7 @@ class Login extends Component {
     }
   }
 
-  componentWillMount() {
+  componentWillUnmount() {
     console.log("Unmount login.js");
   }
 

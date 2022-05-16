@@ -43,8 +43,13 @@ const Suggestion = () => {
                 </div>
               </div>
               <div className="hint-item-footer w-100 mt-2 p-2">
-                <Link className="text-decoration-none" to={`/product/${item.id}`}>
-                  <p className="item-description">{item.description}</p>
+                <Link
+                  className="text-decoration-none"
+                  to={`/product/${item.id}`}
+                >
+                  <p className="item-description text-dark">
+                    {item.description}
+                  </p>
                 </Link>
                 <div className="d-flex justify-content-between align-items-center">
                   <span className="text-primary">{item.price}</span>
@@ -60,7 +65,7 @@ const Suggestion = () => {
           );
         })}
         <div className="row w-100">
-          <button className="view-more " onClick={loadMore}>
+          <button className="view-more" onClick={loadMore}>
             XEM THÊM
           </button>
         </div>

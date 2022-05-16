@@ -1,0 +1,75 @@
+// global
+:root {
+    --color-primary: #ee4d2d;
+}
+
+body {
+    font-family: "Helvetica Neue", sans-serif;
+}
+
+.text-primary {
+    color: var(--color-primary);
+}
+
+.bg-primary {
+    background-color: var(--color-primary);
+}
+
+.font-12 {
+    font-size: 12px;
+}
+
+// components
+.fa-star {
+    color: var(--color-primary);
+}
+
+.combo {
+    color: var(--color-primary);
+    background-color: transparent;
+    border: 1px solid var(--color-primary);
+}
+
+.color-btn:hover, .color-btn:focus {
+    color: var(--color-primary) !important;
+    border-color: var(--color-primary);
+    background-color: transparent;
+}
+
+.add-to-cart-btn {
+    color: var(--color-primary);
+    background-color: rgba(255,87,34,0.1);
+    border-color: var(--color-primary);
+    box-shadow: 0 1px 1px 0 rgb(0 0 0 / 3%);
+}
+
+.add-to-cart-btn:hover {
+    color: var(--color-primary);
+    background-color: rgba(255,87,34,0.05);
+}
+
+.buy-now-btn {
+    color: white;
+    background-color: var(--color-primary);
+    box-shadow: 0 1px 1px 0 rgb(0 0 0 / 3%);
+}
+
+.buy-now-btn:hover {
+    color: white;
+    background-color: #ef664a;
+}
+
+input[type="number"] {
+    height: 32px;
+    width: 60px;
+    text-align: center;
+    border: none;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+.qty-btn {
+    height: 32px !important;
+    width: 32px !important;
+    border-radius: 0%;
+}

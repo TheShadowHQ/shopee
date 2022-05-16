@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const ProfileMenu = () => {
   return (
@@ -9,21 +9,21 @@ const ProfileMenu = () => {
         </li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "list-group-item text-primary" : "list-group-item"
+            isActive ? "list-group-item text-primary" : "list-group-item text-muted"
           }
           to="/account/profile"
         >
-          Hồ sơ của tôi
+          Hồ Sơ
         </NavLink>
-        <li className="list-group-item">Ngân hàng</li>
-        <li className="list-group-item">Địa chỉ</li>
+        <li className="list-group-item text-muted">Ngân hàng</li>
+        <li className="list-group-item text-muted">Địa chỉ</li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "list-group-item text-primary" : "list-group-item"
+            isActive ? "list-group-item text-primary" : "list-group-item text-muted"
           }
           to="/account/change-password"
         >
-          Đổi mật khẩu
+          Đổi Mật Khẩu
         </NavLink>
       </ul>
     </>

@@ -15,7 +15,7 @@ const Category = () => {
         </div>
         <div className="category-item">
           <img
-            src="../../../assets/images/t-shirt.png"
+            src={tShirstLogo}
             alt=""
             className="d-block w-100"
           />
@@ -25,7 +25,7 @@ const Category = () => {
         </div>
         <div className="category-item">
           <img
-            src="../../../assets/images/t-shirt.png"
+            src={tShirstLogo}
             alt=""
             className="d-block w-100"
           />
@@ -35,7 +35,7 @@ const Category = () => {
         </div>
         <div className="category-item">
           <img
-            src="../../../assets/images/t-shirt.png"
+            src={tShirstLogo}
             alt=""
             className="d-block w-100"
           />
@@ -46,7 +46,7 @@ const Category = () => {
 
         <div className="category-item">
           <img
-            src="../../../assets/images/t-shirt.png"
+            src={tShirstLogo}
             alt=""
             className="d-block w-100"
           />
@@ -56,7 +56,7 @@ const Category = () => {
         </div>
         <div className="category-item">
           <img
-            src="../../../assets/images/t-shirt.png"
+            src={tShirstLogo}
             alt=""
             className="d-block w-100"
           />
@@ -66,7 +66,7 @@ const Category = () => {
         </div>
         <div className="category-item">
           <img
-            src="../../../assets/images/t-shirt.png"
+            src={tShirstLogo}
             alt=""
             className="d-block w-100"
           />
@@ -76,7 +76,7 @@ const Category = () => {
         </div>
         <div className="category-item">
           <img
-            src="../../../assets/images/t-shirt.png"
+            src={tShirstLogo}
             alt=""
             className="d-block w-100"
           />
@@ -86,7 +86,7 @@ const Category = () => {
         </div>
         <div className="category-item">
           <img
-            src="../../../assets/images/t-shirt.png"
+            src={tShirstLogo}
             alt=""
             className="d-block w-100"
           />
@@ -96,7 +96,7 @@ const Category = () => {
         </div>
         <div className="category-item">
           <img
-            src="../../../assets/images/t-shirt.png"
+            src={tShirstLogo}
             alt=""
             className="d-block w-100"
           />
