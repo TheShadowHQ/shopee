@@ -7,6 +7,7 @@ import Account from "./components/page/account/Account";
 import ProductDetail from "./components/page/product-detail/Product-detail";
 import NotFound from "./components/not-found/Not-found";
 import AuthRoute from "./components/guard/Auth-route";
+import UnAuthRoute from "./components/guard/unAuth-route";
 
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -17,6 +18,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
+      
         <Route element={<AuthRoute />}>
           <Route path="/" element={<App />}></Route>
           <Route path="/account" element={<Account />}>
@@ -26,7 +28,11 @@ ReactDOM.render(
           <Route path="product/:productId" element={<ProductDetail />} />
           <Route path="*" element={<NotFound />}></Route>
         </Route>
-        <Route path="/login" element={<Login />}></Route>
+
+        <Route element={<UnAuthRoute />}>
+          <Route path="/login" element={<Login />}></Route>
+        </Route>
+
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
