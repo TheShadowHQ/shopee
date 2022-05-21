@@ -1,11 +1,10 @@
 import "./Product-detail.scss";
 import ProductData from "../../../data/Product-data";
-import Header from "../../shared/header/Header";
-import Footer from "../../shared/footer/Footer";
+import Layout from "../../shared/layout/Layout";
 import flashSaleLogo from "../../../assets/images/flash.png";
 import productNotFoundLogo from "../../../assets/images/product-not-found.jpg";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ProductDetail = () => {
@@ -25,11 +24,15 @@ const ProductDetail = () => {
   const selectColor = (event) => {
     event.preventDefault();
     setActiveColor(event.target.textContent);
-  }
+  };
+
+  const navigate = useNavigate();
+  const buy = () => {
+    navigate("/account/profile");
+  };
 
   return (
-    <>
-      <Header />
+    <Layout>
       {selectedProduct ? (
         <section
           className="bg-gray header-spacing p-4"
@@ -85,7 +88,6 @@ const ProductDetail = () => {
                   <span>BẮT ĐẦU SAU {selectedProduct.saleHour}</span>
                 </div>
               </div>
-
               <div className="container ps-0">
                 <div className="row mb-3">
                   <div className="col-4 text-muted">Combo Khuyến Mãi</div>
@@ -108,7 +110,9 @@ const ProductDetail = () => {
                     {selectedProduct.colors.map((color, index) => (
                       <button
                         key={index}
-                        className={`btn btn-outline-secondary color-btn text-dark me-3 ${activeColor === color ? "selected-color" : ""}` }
+                        className={`btn btn-outline-secondary color-btn text-dark me-3 ${
+                          activeColor === color ? "selected-color" : ""
+                        }`}
                         onClick={selectColor}
                       >
                         {color}
@@ -167,6 +171,7 @@ const ProductDetail = () => {
                 <button
                   className="btn buy-now-btn p-3"
                   type="button"
+                  onClick={buy}
                   style={{ borderRadius: "0" }}
                 >
                   Mua Ngay
@@ -186,8 +191,7 @@ const ProductDetail = () => {
           </p>
         </section>
       )}
-      <Footer />
-    </>
+    </Layout>
   );
 };
 

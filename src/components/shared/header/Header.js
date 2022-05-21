@@ -3,17 +3,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../navbar/Navbar";
 import avatar from "../../../assets/images/avatar.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const Header = (props) => {
+const Header = () => {
   const user = {
     username: "quocnguyen",
     shoppingCartNumber: 2,
   };
 
-  const navbarSearchHandler = (searchTerm) => {
-    props.onHeaderSearch(searchTerm);
-  };
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.setItem("isLoggedIn", 0);
+    navigate("/login");
+  }
 
   return (
     <header className="bg-primary">
@@ -99,7 +101,7 @@ const Header = (props) => {
                     <a
                       className="dropdown-item"
                       href="#"
-                      onClick={props.logoutBroastCast}
+                      onClick={logout}
                     >
                       Đăng Xuất
                     </a>
@@ -113,7 +115,6 @@ const Header = (props) => {
       <Navbar
         shoppingCartNumber={user.shoppingCartNumber}
         phoneNumber={user.phoneNumber}
-        onNavbarSearch={navbarSearchHandler}
       />
     </header>
   );

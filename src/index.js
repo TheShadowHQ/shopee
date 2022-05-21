@@ -3,23 +3,31 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import Login from "./components/page/login/Login";
-import Profile from "./components/page/account/profile/Profile";
-import ChangePassword from "./components/page/account/change-password/Change-password";
+import Account from "./components/page/account/Account";
 import ProductDetail from "./components/page/product-detail/Product-detail";
-import Home from "./components/page/homepage/Homepage";
+import NotFound from "./components/not-found/Not-found";
+import AuthRoute from "./components/guard/Auth-route";
+
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ChangePasswordForm from "./components/ui/change-password-form/Change-password-form";
+import MyProfile from "./components/ui/my-profile/My-profile";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App/>}></Route>
-      <Route path="/login" element={<Login/>}></Route>
-      <Route path="/account/profile" element={<Profile/>} />
-      <Route path="/account/change-password" element={<ChangePassword/>}></Route>
-      <Route path="/product/:productId" element={<ProductDetail/>}></Route>
-    </Routes>
+      <Routes>
+        <Route element={<AuthRoute />}>
+          <Route path="/" element={<App />}></Route>
+          <Route path="/account" element={<Account />}>
+            <Route path="profile" element={<MyProfile />} />
+            <Route path="change-password" element={<ChangePasswordForm />} />
+          </Route>
+          <Route path="product/:productId" element={<ProductDetail />} />
+          <Route path="*" element={<NotFound />}></Route>
+        </Route>
+        <Route path="/login" element={<Login />}></Route>
+      </Routes>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
