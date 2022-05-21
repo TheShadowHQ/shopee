@@ -105,9 +105,9 @@ const Login = () => {
                 Đăng nhập với SMS
               </span>
             </div>
-            <div className="text-center text-muted d-flex justify-content-between">
+            <div className="text-center text-muted d-flex align-items-center justify-content-between">
               <hr />
-              <span style={{ margin: "0 10px" }}>Hoặc</span>
+              <span className="text-muted" style={{ margin: "0 10px" }}>HOẶC</span>
               <hr />
             </div>
             <div className="social text-center">
@@ -125,8 +125,8 @@ const Login = () => {
               </button>
             </div>
             <div className="text-center">
-              <span className="text-muted mx-2">Bạn mới đến với shopee?</span>
-              <span className="text-primary">Đăng kí</span>
+              <span className="text-muted mx-2">Bạn mới biết đến Shopee?</span>
+              <span className="text-primary">Đăng ký</span>
             </div>
           </form>
         </section>

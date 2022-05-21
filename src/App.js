@@ -13,7 +13,7 @@ import {
   faMagnifyingGlass,
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
-import { Component, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 library.add(
   fab,
@@ -26,32 +26,15 @@ library.add(
   faShoppingCart
 );
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loggedIn: false,
-    };
-  }
+const App = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
 
-  componentDidMount() {
-    const storedUserLoggedIn = localStorage.getItem("isLoggedIn");
-    storedUserLoggedIn === "1"
-      ? this.setState({ loggedIn: true })
-      : this.setState({ loggedIn: false });
-  }
+  useEffect(() => {
+    const storedLoggedIn = localStorage.getItem("isLoggedIn"); // Save user log-in state in local storage
+    storedLoggedIn === "1" ? setLoggedIn(true) : setLoggedIn(false);
+  }, []);
 
-  render() {
-    return (
-      <>
-        {this.state.loggedIn ? (
-          <Home />
-        ) : (
-          <Login />
-        )}
-      </>
-    );
-  }
-}
+  return <>{loggedIn ? <Home /> : <Login />}</>;
+};
 
 export default App;
