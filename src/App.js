@@ -34,7 +34,7 @@ const App = () => {
     storedLoggedIn === "1" ? setLoggedIn(true) : setLoggedIn(false);
   }, []);
 
-  return <>{loggedIn ? <Home /> : <Login />}</>;
+  return <><Home /></>;
 };
 
 export default App;

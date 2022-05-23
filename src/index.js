@@ -18,9 +18,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-      
         <Route element={<AuthRoute />}>
-          <Route path="/" element={<App />}></Route>
           <Route path="/account" element={<Account />}>
             <Route path="profile" element={<MyProfile />} />
             <Route path="change-password" element={<ChangePasswordForm />} />
@@ -28,11 +26,10 @@ ReactDOM.render(
           <Route path="product/:productId" element={<ProductDetail />} />
           <Route path="*" element={<NotFound />}></Route>
         </Route>
-
         <Route element={<UnAuthRoute />}>
           <Route path="/login" element={<Login />}></Route>
         </Route>
-
+        <Route path="/" element={<App />}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

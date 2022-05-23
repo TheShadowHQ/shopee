@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+
   const user = {
     username: "quocnguyen",
     shoppingCartNumber: 2,
@@ -15,12 +17,12 @@ const Header = () => {
   const logout = () => {
     localStorage.setItem("isLoggedIn", 0);
     navigate("/login");
-  }
+  };
 
   return (
     <header className="bg-primary">
       <div className="wrapper">
-        <nav className="navbar navbar-expand w-100" style={{height: "2rem"}}>
+        <nav className="navbar navbar-expand w-100" style={{ height: "2rem" }}>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 left-nav">
             <li className="nav-item">
               <a className="nav-link slash" href="#">
@@ -60,7 +62,7 @@ const Header = () => {
                 id="navbarDropdown"
                 data-bs-toggle="dropdown"
               >
-                <FontAwesomeIcon icon="fa-solid fa-globe" />
+                <FontAwesomeIcon icon="fa-solid fa-globe" className="me-1" />
                 Tiếng Việt
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -72,43 +74,47 @@ const Header = () => {
                 </a>
               </div>
             </li>
-            <li className="nav-item">
-              <div>
-                <img src={avatar} alt="avatar" className="avatar circle" />
-              </div>
-              <div className="dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  id="logoutDropDown"
-                  data-bs-toggle="dropdown"
-                >
-                  {user.username}
+
+            {isLoggedIn === "0" ? (
+              <li className="nav-item">
+                <a className="nav-link">Đăng Ký</a>
+                <div className="nav-item nav-link-separator"></div>
+                <a className="nav-link" onClick={() => navigate("/login")}>
+                  Đăng Nhập
                 </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link className="dropdown-item" to="/account/profile">
-                      Tài Khoản Của Tôi
-                    </Link>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Đơn Mua
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="dropdown-item"
-                      href="#"
-                      onClick={logout}
-                    >
-                      Đăng Xuất
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <div>
+                  <img src={avatar} alt="avatar" className="avatar circle" />
+                </div>
+                <div className="dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    role="button"
+                    id="logoutDropDown"
+                    data-bs-toggle="dropdown"
+                  >
+                    {user.username}
+                  </a>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <Link className="dropdown-item" to="/account/profile">
+                        Tài Khoản Của Tôi
+                      </Link>
+                    </li>
+                    <li>
+                      <a className="dropdown-item">Đơn Mua</a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" onClick={logout}>
+                        Đăng Xuất
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            )}
           </ul>
         </nav>
       </div>
