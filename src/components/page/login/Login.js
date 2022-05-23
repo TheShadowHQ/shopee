@@ -1,7 +1,7 @@
 import "./Login.scss";
 import logo from "../../../assets/images/logo.png";
-import { useState, useEffect } from "react";
 import Footer from "../../shared/footer/Footer";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {

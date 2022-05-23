@@ -1,7 +1,7 @@
 import styles from "./Navbar.module.scss"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Search from "./search/Search";
 import shopeeLogo from "../../../assets/images/logo-full-white.png"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -10,8 +10,7 @@ const Navbar = (props) => {
 
   const updateCartNumber = (event) => {
     event.preventDefault();
-    const newCartNumber = cartNumber + 1;
-    setCartNumber(newCartNumber);
+    setCartNumber(prev => prev + 1);
   };
 
   const searchHandler = (searchTerm) => {

@@ -1,5 +1,5 @@
 import "./Product-detail.scss";
-import ProductData from "../../../data/Product-data";
+import Products from "../../../data/Product-data";
 import Layout from "../../shared/layout/Layout";
 import flashSaleLogo from "../../../assets/images/flash.png";
 import productNotFoundLogo from "../../../assets/images/product-not-found.jpg";
@@ -9,12 +9,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ProductDetail = () => {
   const params = useParams();
-  const productId = +params.productId;
-  const productItems = ProductData;
-  const selectedProduct = productItems.find((item) => item.id === productId);
+  const selectedProduct = Products.filter((product) => product.id).find(
+    (product) => product.id.toString() === params.productId
+  );
 
-  const [quantity, setQuantity] = useState(1);
+  // Rating UI
+  let stars = [];
+  if (selectedProduct && selectedProduct.stars) {
+    for (let i = 0; i < selectedProduct.stars; i++) {
+      stars.push(<FontAwesomeIcon icon="star" color="#EE4D2C" key={i} />);
+    }
+  }
+
   const [activeColor, setActiveColor] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
   const setOrderQuantity = (event) => {
     event.preventDefault();
@@ -26,6 +34,7 @@ const ProductDetail = () => {
     setActiveColor(event.target.textContent);
   };
 
+  // Link navigate
   const navigate = useNavigate();
   const buy = () => {
     navigate("/account/profile");
@@ -49,26 +58,24 @@ const ProductDetail = () => {
               <h4 className="text-bold">{selectedProduct.description}</h4>
               <div className="d-flex">
                 <span className="pe-4">
-                  <span className="me-1 text-primary">
+                  <ins className="me-1 text-primary">
                     {selectedProduct.stars}
-                  </span>
-                  <FontAwesomeIcon icon="fa-solid fa-star" />
-                  <FontAwesomeIcon icon="fa-solid fa-star" />
-                  <FontAwesomeIcon icon="fa-solid fa-star" />
-                  <FontAwesomeIcon icon="fa-solid fa-star" />
-                  <FontAwesomeIcon icon="fa-solid fa-star" />
+                  </ins>
+                  {stars}
                 </span>
                 <span
                   className="px-4"
                   style={{ borderLeft: "1px solid rgba(0,0,0,.14)" }}
                 >
-                  376 <span className="text-muted">Đánh Giá</span>
+                  <ins>{selectedProduct.rating}</ins>{" "}
+                  <span className="text-muted">Đánh Giá</span>
                 </span>
                 <span
                   className="px-4"
                   style={{ borderLeft: "1px solid rgba(0,0,0,.14)" }}
                 >
-                  1,1k <span className="text-muted">Đã Bán</span>
+                  <ins>{selectedProduct.sold}</ins>{" "}
+                  <span className="text-muted">Đã Bán</span>
                 </span>
               </div>
               <div className="bg-gray m-3 ms-0">
