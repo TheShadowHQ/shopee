@@ -1,7 +1,6 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import Login from "./components/page/login/Login";
 import Home from "./components/page/homepage/Homepage";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -27,14 +26,17 @@ library.add(
 );
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     const storedLoggedIn = localStorage.getItem("isLoggedIn"); // Save user log-in state in local storage
-    storedLoggedIn === "1" ? setLoggedIn(true) : setLoggedIn(false);
+    
   }, []);
 
-  return <><Home /></>;
+  return (
+    <>
+      <Home />
+    </>
+  );
 };
 
 export default App;

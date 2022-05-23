@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import Home from "./components/page/homepage/Homepage";
 import Login from "./components/page/login/Login";
 import Account from "./components/page/account/Account";
 import ProductDetail from "./components/page/product-detail/Product-detail";
@@ -23,13 +24,13 @@ ReactDOM.render(
             <Route path="profile" element={<MyProfile />} />
             <Route path="change-password" element={<ChangePasswordForm />} />
           </Route>
-          <Route path="product/:productId" element={<ProductDetail />} />
-          <Route path="*" element={<NotFound />}></Route>
         </Route>
         <Route element={<UnAuthRoute />}>
           <Route path="/login" element={<Login />}></Route>
         </Route>
-        <Route path="/" element={<App />}></Route>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="product/:productId" element={<ProductDetail />} />
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
