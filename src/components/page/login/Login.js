@@ -2,7 +2,7 @@ import "./Login.scss";
 import logo from "../../../assets/images/logo.png";
 import Footer from "../../shared/footer/Footer";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -126,7 +126,7 @@ const Login = () => {
             </div>
             <div className="text-center">
               <span className="text-muted mx-2">Bạn mới biết đến Shopee?</span>
-              <span className="text-primary">Đăng ký</span>
+              <NavLink to="/register" className="text-primary">Đăng ký</NavLink>
             </div>
           </form>
         </section>

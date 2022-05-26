@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import Home from "./components/page/homepage/Homepage";
 import Login from "./components/page/login/Login";
+import Register from "./components/page/register/Register";
 import Account from "./components/page/account/Account";
 import ProductDetail from "./components/page/product-detail/Product-detail";
 import NotFound from "./components/not-found/Not-found";
@@ -27,6 +28,7 @@ ReactDOM.render(
         </Route>
         <Route element={<UnAuthRoute />}>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
         </Route>
         <Route path="/" element={<Home />}></Route>
         <Route path="product/:productId" element={<ProductDetail />} />

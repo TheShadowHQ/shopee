@@ -77,7 +77,9 @@ const Header = () => {
 
             {isLoggedIn === "0" ? (
               <li className="nav-item">
-                <a className="nav-link">Đăng Ký</a>
+                <a className="nav-link" onClick={() => navigate("/register")}>
+                  Đăng Ký
+                </a>
                 <div className="nav-item nav-link-separator"></div>
                 <a className="nav-link" onClick={() => navigate("/login")}>
                   Đăng Nhập
@@ -118,10 +120,7 @@ const Header = () => {
           </ul>
         </nav>
       </div>
-      <Navbar
-        shoppingCartNumber={user.shoppingCartNumber}
-        phoneNumber={user.phoneNumber}
-      />
+      <Navbar shoppingCartNumber={user.shoppingCartNumber} />
     </header>
   );
 };
