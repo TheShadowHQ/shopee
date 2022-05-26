@@ -3,6 +3,7 @@ import logo from "../../../assets/images/logo.png";
 import Footer from "../../shared/footer/Footer";
 import { useState, useEffect } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,8 +13,17 @@ const Login = () => {
 
   const navigate = useNavigate();
   const login = () => {
-    localStorage.setItem("isLoggedIn", "1");
-    navigate("/");
+    axios
+      .post("https://shopee-nodejs.herokuapp.com/api/auth/login", {
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("isLoggedIn", "1");
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -107,7 +117,9 @@ const Login = () => {
             </div>
             <div className="text-center text-muted d-flex align-items-center justify-content-between">
               <hr />
-              <span className="text-muted" style={{ margin: "0 10px" }}>HOẶC</span>
+              <span className="text-muted" style={{ margin: "0 10px" }}>
+                HOẶC
+              </span>
               <hr />
             </div>
             <div className="social text-center">
@@ -126,7 +138,9 @@ const Login = () => {
             </div>
             <div className="text-center">
               <span className="text-muted mx-2">Bạn mới biết đến Shopee?</span>
-              <NavLink to="/register" className="text-primary">Đăng ký</NavLink>
+              <NavLink to="/register" className="text-primary">
+                Đăng ký
+              </NavLink>
             </div>
           </form>
         </section>
