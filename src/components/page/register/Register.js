@@ -1,16 +1,22 @@
 import "./Register.scss";
 import logo from "../../../assets/images/logo.png";
 import Footer from "../../shared/footer/Footer";
+import ErrorToast from "../../toasts/Error-toast";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
   const [email, setEmail] = useState("");
-  const [isEmailValid, setIsEmailValid] = useState();
+  const [isEmailValid, setIsEmailValid] = useState(false);
   const [password, setPassword] = useState("");
-  const [isPasswordValid, setIsPasswordValid] = useState();
-  const [error, setError] = useState();
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [errorToast, setErrorToast] = useState({
+    showError: false,
+    title: "Register failed",
+    message: "",
+  });
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,13 +38,13 @@ const Register = () => {
         email: email,
         password: password,
       })
-      .then((res) => {
-        console.log(res);
-        navigate("/login");
-      })
+      .then((res) => navigate("/login"))
       .catch((err) => {
-        console.log(err);
-        setError(err.response.data);
+        setErrorToast((prevState) => ({
+          ...prevState,
+          showError: true,
+          message: err.response.data,
+        }));
       });
   };
 
@@ -46,11 +52,17 @@ const Register = () => {
     <>
       <nav className="container navbar d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center brand">
-          <img src={logo} alt="logo" />
+          <img src={logo} alt="Shopee" onClick={() => navigate("/")} />
           <h2>Đăng ký</h2>
         </div>
       </nav>
       <main className="bg-primary">
+        <ErrorToast
+          showError={errorToast.showError}
+          setShowError={setErrorToast}
+          title={errorToast.title}
+          message={errorToast.message}
+        />
         <section className="container">
           <form
             className="form-container"
@@ -61,7 +73,6 @@ const Register = () => {
               <p className="text-heading">Đăng ký</p>
             </div>
             <div className="form-input">
-              {error && <p className="text-danger">{error}</p>}
               <input
                 type="text"
                 name="username"

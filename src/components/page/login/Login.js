@@ -1,15 +1,21 @@
 import "./Login.scss";
 import logo from "../../../assets/images/logo.png";
 import Footer from "../../shared/footer/Footer";
+import ErrorToast from "../../toasts/Error-toast"
 import { useState, useEffect } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
-  const [isEmailValid, setIsEmailValid] = useState();
+  const [isEmailValid, setIsEmailValid] = useState(false);
   const [password, setPassword] = useState("");
-  const [isPasswordValid, setIsPasswordValid] = useState();
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [errorToast, setErrorToast] = useState({
+    showError: false,
+    title: "Login failed",
+    message: "",
+  });
 
   const navigate = useNavigate();
   const login = () => {
@@ -19,11 +25,16 @@ const Login = () => {
         password: password,
       })
       .then((res) => {
-        console.log(res);
         localStorage.setItem("isLoggedIn", "1");
         navigate("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setErrorToast((prevState) => ({
+          ...prevState,
+          showError: true,
+          message: err.response.data,
+        }));
+      });
   };
 
   useEffect(() => {
@@ -43,12 +54,18 @@ const Login = () => {
     <>
       <nav className="container navbar d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center brand">
-          <img src={logo} alt="logo" />
+          <img src={logo} alt="logo" onClick={() => navigate("/")} />
           <h2>Đăng nhập</h2>
         </div>
         <div className="text-primary">Cần trợ giúp?</div>
       </nav>
       <main className="bg-primary">
+        <ErrorToast
+          showError={errorToast.showError}
+          setShowError={setErrorToast}
+          title={errorToast.title}
+          message={errorToast.message}
+        />
         <section className="container">
           <form className="form-container">
             <div className="d-flex justify-content-between">

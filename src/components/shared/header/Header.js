@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import "./Header.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../navbar/Navbar";
