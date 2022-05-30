@@ -1,6 +1,6 @@
 const useAuth = () => {
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
-  return isLoggedIn === "1";
+  const isLoggedIn = localStorage.getItem("token");
+  return !!isLoggedIn;
 };
 
 export default useAuth;

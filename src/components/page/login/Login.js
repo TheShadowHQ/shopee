@@ -22,7 +22,7 @@ const Login = () => {
         password: password,
       })
       .then((res) => {
-        localStorage.setItem("isLoggedIn", "1");
+        localStorage.setItem("token", res.headers["x-auth-token"]);
         navigate("/");
       })
       .catch((err) => {

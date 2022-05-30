@@ -12,7 +12,6 @@ import {
   faMagnifyingGlass,
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState, useEffect } from "react";
 
 library.add(
   fab,
@@ -26,12 +25,6 @@ library.add(
 );
 
 const App = () => {
-
-  useEffect(() => {
-    const storedLoggedIn = localStorage.getItem("isLoggedIn"); // Save user log-in state in local storage
-    
-  }, []);
-
   return (
     <>
       <Home />
