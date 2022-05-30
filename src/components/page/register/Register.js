@@ -1,7 +1,7 @@
 import "./Register.scss";
 import logo from "../../../assets/images/logo.png";
 import Footer from "../../shared/footer/Footer";
-import ErrorToast from "../../toasts/Error-toast";
+import CustomToast from "../../toasts/Custom-toast";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -11,11 +11,7 @@ const Register = () => {
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [password, setPassword] = useState("");
   const [isPasswordValid, setIsPasswordValid] = useState(false);
-  const [errorToast, setErrorToast] = useState({
-    showError: false,
-    title: "Register failed",
-    message: "",
-  });
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -33,23 +29,33 @@ const Register = () => {
   };
 
   const register = () => {
+    setError(null);
     axios
       .post("https://shopee-nodejs.herokuapp.com/api/auth/register", {
         email: email,
         password: password,
       })
-      .then((res) => navigate("/login"))
+      .then((res) => {
+        localStorage.setItem("isLoggedIn", "1");
+        navigate("/");
+      })
       .catch((err) => {
-        setErrorToast((prevState) => ({
-          ...prevState,
-          showError: true,
-          message: err.response.data,
-        }));
+        setError({
+          title: error.title,
+          message: err.response.data
+        });
       });
   };
 
   return (
     <>
+      {error && (
+        <CustomToast
+          title={error.title}
+          message={error.message}
+          onClose={() => setError(null)}
+        />
+      )}
       <nav className="container navbar d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center brand">
           <img src={logo} alt="Shopee" onClick={() => navigate("/")} />
@@ -57,12 +63,6 @@ const Register = () => {
         </div>
       </nav>
       <main className="bg-primary">
-        <ErrorToast
-          showError={errorToast.showError}
-          setShowError={setErrorToast}
-          title={errorToast.title}
-          message={errorToast.message}
-        />
         <section className="container">
           <form
             className="form-container"

@@ -1,7 +1,7 @@
 import "./Login.scss";
 import logo from "../../../assets/images/logo.png";
 import Footer from "../../shared/footer/Footer";
-import ErrorToast from "../../toasts/Error-toast"
+import CustomToast from "../../toasts/Custom-toast";
 import { useState, useEffect } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
@@ -11,14 +11,11 @@ const Login = () => {
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [password, setPassword] = useState("");
   const [isPasswordValid, setIsPasswordValid] = useState(false);
-  const [errorToast, setErrorToast] = useState({
-    showError: false,
-    title: "Login failed",
-    message: "",
-  });
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
   const login = () => {
+    setError(null);
     axios
       .post("https://shopee-nodejs.herokuapp.com/api/auth/login", {
         email: email,
@@ -29,11 +26,10 @@ const Login = () => {
         navigate("/");
       })
       .catch((err) => {
-        setErrorToast((prevState) => ({
-          ...prevState,
-          showError: true,
+        setError({
+          title: "Login failed",
           message: err.response.data,
-        }));
+        });
       });
   };
 
@@ -52,6 +48,13 @@ const Login = () => {
 
   return (
     <>
+      {error && (
+        <CustomToast
+          title={error.title}
+          message={error.message}
+          onClose={() => setError(null)}
+        />
+      )}
       <nav className="container navbar d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center brand">
           <img src={logo} alt="logo" onClick={() => navigate("/")} />
@@ -60,12 +63,6 @@ const Login = () => {
         <div className="text-primary">Cần trợ giúp?</div>
       </nav>
       <main className="bg-primary">
-        <ErrorToast
-          showError={errorToast.showError}
-          setShowError={setErrorToast}
-          title={errorToast.title}
-          message={errorToast.message}
-        />
         <section className="container">
           <form className="form-container">
             <div className="d-flex justify-content-between">
