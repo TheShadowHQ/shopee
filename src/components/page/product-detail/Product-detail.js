@@ -1,17 +1,17 @@
 import "./Product-detail.scss";
-import Products from "../../../data/Product-data";
 import Layout from "../../shared/layout/Layout";
 import flashSaleLogo from "../../../assets/images/flash.png";
 import productNotFoundLogo from "../../../assets/images/product-not-found.jpg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
 const ProductDetail = () => {
   const params = useParams();
-  const selectedProduct = Products.filter((product) => product.id).find(
-    (product) => product.id.toString() === params.productId
-  );
+  const [activeColor, setActiveColor] = useState("");
+  const [quantity, setQuantity] = useState(1);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   // Rating UI
   let stars = [];
@@ -20,9 +20,6 @@ const ProductDetail = () => {
       stars.push(<FontAwesomeIcon icon="star" color="#EE4D2C" key={i} />);
     }
   }
-
-  const [activeColor, setActiveColor] = useState("");
-  const [quantity, setQuantity] = useState(1);
 
   const setOrderQuantity = (event) => {
     event.preventDefault();
@@ -40,6 +37,19 @@ const ProductDetail = () => {
     navigate("/account/profile");
   };
 
+  const getProductItem = () => {
+    axios
+      .get(
+        `https://shopee-nodejs.herokuapp.com/api/products/${params.productId}`
+      )
+      .then((res) => {
+        console.log(res);
+        if (res.data) setSelectedProduct(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+  useEffect(getProductItem, []);
+
   return (
     <Layout>
       {selectedProduct ? (
@@ -49,12 +59,12 @@ const ProductDetail = () => {
         >
           <div className="bg-white p-4 wrapper d-flex gap-5">
             <img
-              className=""
+              className="w-25"
               src={selectedProduct.productImage}
               alt="Hat"
               style={{ height: "350px" }}
             />
-            <div className="">
+            <div style={{ width: "800px" }}>
               <h4 className="text-bold">{selectedProduct.description}</h4>
               <div className="d-flex">
                 <span className="pe-4">

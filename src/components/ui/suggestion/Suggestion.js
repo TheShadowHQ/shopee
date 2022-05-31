@@ -1,12 +1,25 @@
 import "./Suggestion.scss";
-import ProductData from "../../../data/Product-data";
 import hoanxu from "../../../assets/images/hoanxu.png";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Suggestion = () => {
-  const items = ProductData;
+  const [items, setItems] = useState([]);
 
   const loadMore = () => {};
+
+  const getData = () => {
+    axios
+      .get("https://shopee-nodejs.herokuapp.com/api/products")
+      .then((res) => {
+        console.log(res);
+        if (res.data && res.data.length) setItems(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(getData, []);
 
   return (
     <section className="wrapper bg-white flex-column mt-3 today-hint">
@@ -45,7 +58,7 @@ const Suggestion = () => {
               <div className="hint-item-footer w-100 mt-2 p-2">
                 <Link
                   className="text-decoration-none"
-                  to={`/product/${item.id}`}
+                  to={`/product/${item._id}`}
                 >
                   <p className="item-description text-dark">
                     {item.description}
