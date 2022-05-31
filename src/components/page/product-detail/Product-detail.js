@@ -37,6 +37,25 @@ const ProductDetail = () => {
     navigate("/account/profile");
   };
 
+  const addToCart = () => {
+    axios
+      .post(
+        "https://shopee-nodejs.herokuapp.com/api/cart",
+        {
+          productId: params.productId,
+          quantity: quantity,
+          color: activeColor,
+        },
+        {
+          headers: {
+            "x-auth-token": localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
   const getProductItem = () => {
     axios
       .get(
@@ -178,7 +197,11 @@ const ProductDetail = () => {
                 </div>
               </div>
               <div className="d-flex gap-3 m-3 ms-0">
-                <button className="btn add-to-cart-btn p-3" type="button">
+                <button
+                  className="btn add-to-cart-btn p-3"
+                  type="button"
+                  onClick={addToCart}
+                >
                   <FontAwesomeIcon
                     className="me-1"
                     icon="fa-solid fa-cart-shopping"
