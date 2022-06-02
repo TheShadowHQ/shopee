@@ -2,6 +2,7 @@ import "./Product-detail.scss";
 import Layout from "../../shared/layout/Layout";
 import flashSaleLogo from "../../../assets/images/flash.png";
 import productNotFoundLogo from "../../../assets/images/product-not-found.jpg";
+import Loading from "../../shared/loading/Loading";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -37,40 +38,51 @@ const ProductDetail = () => {
     navigate("/account/profile");
   };
 
+  const [loading, setLoading] = useState(false);
+
   const addToCart = () => {
-    axios
-      .post(
-        "https://shopee-nodejs.herokuapp.com/api/cart",
-        {
-          productId: params.productId,
-          quantity: quantity,
-          color: activeColor,
-        },
-        {
-          headers: {
-            "x-auth-token": localStorage.getItem("token"),
+    if (localStorage.getItem("token")) {
+      axios
+        .post(
+          "https://shopee-nodejs.herokuapp.com/api/cart",
+          {
+            productId: params.productId,
+            quantity: quantity,
+            color: activeColor,
           },
-        }
-      )
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+          {
+            headers: {
+              "x-auth-token": localStorage.getItem("token"),
+            },
+          }
+        )
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    } else {
+      navigate("/login");
+    }
   };
 
   const getProductItem = () => {
+    setLoading(true);
     axios
       .get(
         `https://shopee-nodejs.herokuapp.com/api/products/${params.productId}`
       )
       .then((res) => {
-        console.log(res);
         if (res.data) setSelectedProduct(res.data);
+        setLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
   };
   useEffect(getProductItem, []);
 
   return (
     <Layout>
+      {loading && <Loading />}
       {selectedProduct ? (
         <section
           className="bg-gray header-spacing p-4"
