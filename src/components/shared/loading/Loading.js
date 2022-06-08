@@ -5,9 +5,8 @@ const Loading = () => {
   return (
     <div className="loading-container">
       <ReactLoading
-        class
         type={"spin"}
-        color={"#EE4DC2"}
+        color={"#EE4D2D"}
         height={667}
         width={375}
       />

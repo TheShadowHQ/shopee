@@ -1,28 +1,36 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRef } from "react";
-import "./Search.scss";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import "./SearchBar.scss";
 
-const Search = (props) => {
-  const searchInputRef = useRef();
+const SearchBar = (props) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const search = (event) => {
     event.preventDefault();
-    props.onSearch(searchInputRef.current.value);
-    searchInputRef.current.value = "";
+    dispatch({ type: "UPDATE", value: "searchTerm" });
+    navigate("/search");
+  };
+
+  const updateSearch = (event) => {
+    setSearchTerm(event.target.value);
   };
 
   return (
     <form
-      className="d-flex flex-column my-0 mx-5"
+      className="d-flex flex-column my-0 mx-5 flex-1"
       style={{ flex: 1 }}
       onSubmit={search}
     >
       <div className="position-relative d-flex align-items-center">
         <input
           className="form-control me-2 p-2"
-          type="search"
+          type="text"
           placeholder="Săn voucher hoàn 1 triệu xu"
-          ref={searchInputRef}
+          onChange={updateSearch}
         />
         <button className="btn bg-primary search-btn" type="submit">
           <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
@@ -33,4 +41,4 @@ const Search = (props) => {
   );
 };
 
-export default Search;
+export default SearchBar;

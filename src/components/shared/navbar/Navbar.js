@@ -1,9 +1,9 @@
 import styles from "./Navbar.module.scss"
-import Search from "./search/Search";
+import SearchBar from "./search/SearchBar";
 import shopeeLogo from "../../../assets/images/logo-full-white.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 const Navbar = (props) => {
   let [cartNumber, setCartNumber] = useState(props.shoppingCartNumber);
@@ -31,7 +31,7 @@ const Navbar = (props) => {
         <Link className="navbar-brand" to="/">
           <img src={shopeeLogo} alt="" width="162px" />
         </Link>
-        <Search onSearch={searchHandler}>
+        <SearchBar onSearch={searchHandler}>
           <div className="text-small mt-2">
             {favoriteItems.map((item) => (
               <span className="me-3" key={item.key}>
@@ -39,14 +39,14 @@ const Navbar = (props) => {
               </span>
             ))}
           </div>
-        </Search>
+        </SearchBar>
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          <li className="nav-item position-relative" onClick={updateCartNumber}>
+          <NavLink className="nav-item position-relative" to="/cart">
             <FontAwesomeIcon icon="fa-solid fa-cart-shopping" className={styles.faCartShopping}/>
             <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-primary">
               {cartNumber}
             </span>
-          </li>
+          </NavLink>
         </ul>
       </div>
     </nav>
