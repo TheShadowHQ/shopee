@@ -5,6 +5,7 @@ import App from "./App";
 import Home from "./components/page/homepage/Homepage";
 import Login from "./components/page/login/Login";
 import Cart from "./components/page/cart/Cart";
+import Search from "./components/page/search/Search";
 import Register from "./components/page/register/Register";
 import Account from "./components/page/account/Account";
 import ProductDetail from "./components/page/product-detail/Product-detail";
@@ -37,6 +38,7 @@ ReactDOM.render(
           </Route>
           <Route path="/" element={<Home />}></Route>
           <Route path="product/:productId" element={<ProductDetail />} />
+          <Route path="search" element={<Search />} />
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </BrowserRouter>

@@ -7,6 +7,8 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../../store/store";
 
 const ProductDetail = () => {
   const params = useParams();
@@ -40,6 +42,7 @@ const ProductDetail = () => {
 
   const [loading, setLoading] = useState(false);
 
+  const dispatch = useDispatch();
   const addToCart = () => {
     if (localStorage.getItem("token")) {
       axios
@@ -56,7 +59,11 @@ const ProductDetail = () => {
             },
           }
         )
-        .then((res) => console.log(res))
+        .then((res) => {
+          console.log(res);
+          // dispatch({ type: "UPDATE_CART", value: quantity });
+          dispatch(cartActions.updateCart(quantity));
+        })
         .catch((err) => console.log(err));
     } else {
       navigate("/login");

@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { searchActions } from "../../../../store/store";
 import "./SearchBar.scss";
 
 const SearchBar = (props) => {
@@ -11,7 +12,8 @@ const SearchBar = (props) => {
 
   const search = (event) => {
     event.preventDefault();
-    dispatch({ type: "UPDATE", value: "searchTerm" });
+    // dispatch({ type: "UPDATE_SEARCH", value: searchTerm });
+    dispatch(searchActions.updateSearch(searchTerm));
     navigate("/search");
   };
 
@@ -21,7 +23,7 @@ const SearchBar = (props) => {
 
   return (
     <form
-      className="d-flex flex-column my-0 mx-5 flex-1"
+      className="d-flex flex-column my-0 mx-5"
       style={{ flex: 1 }}
       onSubmit={search}
     >
@@ -30,7 +32,7 @@ const SearchBar = (props) => {
           className="form-control me-2 p-2"
           type="text"
           placeholder="Săn voucher hoàn 1 triệu xu"
-          onChange={updateSearch}
+          onBlur={updateSearch}
         />
         <button className="btn bg-primary search-btn" type="submit">
           <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
