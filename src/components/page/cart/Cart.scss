@@ -1,15 +1,19 @@
 .product-image-wrapper {
-    width: 80px;
-    height: 80px;
-  }
-  
-  .product-item-description {
-    word-wrap: break-word;
-    white-space: normal;
-    overflow: hidden;
-    display: -webkit-box;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-  }
-  
+  width: 80px;
+  height: 80px;
+}
+
+.product-item-description {
+  word-wrap: break-word;
+  white-space: normal;
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.remove-btn:hover {
+  color: #ee4d2d;
+  cursor: pointer;
+}

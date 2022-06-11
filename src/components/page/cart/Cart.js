@@ -1,6 +1,7 @@
-import Layout from "../../shared/layout/Layout";
-import Loading from "../../shared/loading/Loading";
 import "./Cart.scss";
+import Layout from "../../shared/layout/Layout";
+import Wrapper from "../../shared/helper/Wrapper";
+import Loading from "../../shared/loading/Loading";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -37,12 +38,12 @@ const Cart = () => {
           "x-auth-token": localStorage.getItem("token"),
         },
       })
-      .then(function (response) {
-        console.log(response);
+      .then((res) => {
+        console.log(res);
+        const newCart = carts.filter((item) => item._id !== id);
+        setCarts(newCart);
       })
-      .catch(function (err) {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -67,39 +68,47 @@ const Cart = () => {
           <div className="divider" />
           {carts.map((item) => {
             return (
-              <div className="form-check d-flex flex-wrap align-items-center p-3 ps-5 justify-content-between" key={item._id}>
-                <div
-                  className="d-flex flex-wrap align-items-center"
-                  style={{ width: "40%" }}
-                >
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
-                  <div className="product-image-wrapper mx-3">
-                    <img
-                      src={item.product.productImage}
-                      alt=""
-                      className="d-block w-100"
+              <Wrapper key={item._id}>
+                <div className="form-check d-flex flex-wrap align-items-center p-3 ps-5 justify-content-between">
+                  <div
+                    className="d-flex flex-wrap align-items-center"
+                    style={{ width: "40%" }}
+                  >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="flexCheckDefault"
                     />
+                    <div className="product-image-wrapper mx-3">
+                      <img
+                        src={item.product.productImage}
+                        alt=""
+                        className="d-block w-100"
+                      />
+                    </div>
+                    <div className="form-check-label product-item-description w-75 text-truncate">
+                      {item.product.description}
+                    </div>
                   </div>
-                  <div className="form-check-label product-item-description w-75 text-truncate">
-                    {item.product.description}
+                  <div className="text-muted">Phân loại hàng: {item.color}</div>
+                  <div>
+                    <del>{item.product.price}</del>
+                    &nbsp; <span>{item.product.discountPrice}</span>
+                  </div>
+                  <div>Số lượng: {item.quantity}</div>
+                  <div className="text-primary">
+                    {(+item.product.discountPrice * +item.quantity).toString()}
+                  </div>
+                  <div
+                    className="remove-btn"
+                    onClick={() => deleteCart(item._id)}
+                  >
+                    Xóa
                   </div>
                 </div>
-                <div className="text-muted">Phân loại hàng: {item.color}</div>
-                <div>
-                  <del>{item.product.price}</del>
-                  &nbsp; <span>{item.product.discountPrice}</span>
-                </div>
-                <div>Số lượng: {item.quantity}</div>
-                <div className="text-primary">
-                  {(+item.product.discountPrice * +item.quantity).toString()}
-                </div>
-                <div onClick={() => deleteCart(item._id)}>Xóa</div>
-              </div>
+                <div className="divider" />
+              </Wrapper>
             );
           })}
         </section>
